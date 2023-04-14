@@ -22,10 +22,10 @@ const emojis = {
     -XXXXXXXXX
     -XXXXXXXXX
     -XXXXXXXXX
+    -XXXXXXXXX
+    -XXXXXXXXX
+    -XXXXXXXXX
     OXXXXXXXXX
-    -XXXXXXXXX
-    -XXXXXXXXX
-    -XXXXXXXXX
   `);
   maps.push(`
     O--XXXXXXX
