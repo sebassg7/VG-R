@@ -12,6 +12,10 @@ const playerPosition = {
   x: undefined,
   y: undefined,
 };
+const giftPosition = {
+  x: undefined,
+  y: undefined,
+};
 
 window.addEventListener('load', setCanvasSize);
 window.addEventListener('resize', setCanvasSize);
@@ -55,6 +59,9 @@ function startGame() {
           playerPosition.y = posY;
           console.log({playerPosition});
         }
+      } else if (col == 'I') {
+        giftPosition.x = posX;
+        giftPosition.y = posY;
       }
       
       game.fillText(emoji, posX, posY);
@@ -65,6 +72,14 @@ function startGame() {
 }
 
 function movePlayer() {
+  const giftCollisionX = playerPosition.x.toFixed(3) == giftPosition.x.toFixed(3);
+  const giftCollisionY = playerPosition.y.toFixed(3) == giftPosition.y.toFixed(3);
+  const giftCollision = giftCollisionX && giftCollisionY;
+  
+  if (giftCollision) {
+    console.log('Subiste de nisvel!');
+  }
+  
   game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
 }
 
@@ -80,39 +95,43 @@ function moveByKeys(event) {
   else if (event.key == 'ArrowRight') moveRight();
   else if (event.key == 'ArrowDown') moveDown();
 }
-
-function moveUp(){
-
+function moveUp() {
   console.log('Me quiero mover hacia arriba');
-  if((playerPosition.y-elementsSize)<0){
-    console.log('OUT');}else{playerPosition.y-=elementsSize;
-      startGame();
-    }
-  };
 
-function moveLeft(){
+  if ((playerPosition.y - elementsSize) < 0) {
+    console.log('OUT');
+  } else {
+    playerPosition.y -= elementsSize;
+    startGame();
+  }
+}
+function moveLeft() {
+  console.log('Me quiero mover hacia izquierda');
 
-  console.log('Me quiero mover hacia izquierda')
-  if((playerPosition.x-elementsSize)<0){  
-    console.log('OUT');}else{playerPosition.x-=elementsSize;   
-      startGame();
-    }
-  };
+  if ((playerPosition.x - elementsSize) < 0) {
+    console.log('OUT');
+  } else {
+    playerPosition.x -= elementsSize;
+    startGame();
+  }
+}
+function moveRight() {
+  console.log('Me quiero mover hacia derecha');
 
-function moveRight(){
-
-  console.log('Me quiero mover hacia derecha')
-  if((playerPosition.x+elementsSize)>canvasSize){
-    console.log('OUT');}else{playerPosition.x+=elementsSize;
-      startGame();
-    }
-  };
-
-function moveDown(){
-
+  if ((playerPosition.x + elementsSize) > canvasSize) {
+    console.log('OUT');
+  } else {
+    playerPosition.x += elementsSize;
+    startGame();
+  }
+}
+function moveDown() {
   console.log('Me quiero mover hacia abajo');
-  if((playerPosition.y+elementsSize)>canvasSize){
-    console.log('OUT');}else{playerPosition.y+=elementsSize; 
-      startGame();
-    }
-  };
+  
+  if ((playerPosition.y + elementsSize) > canvasSize) {
+    console.log('OUT');
+  } else {
+    playerPosition.y += elementsSize;
+    startGame();
+  }
+}
